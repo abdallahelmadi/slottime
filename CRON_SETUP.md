@@ -30,7 +30,19 @@ If you want cleanup to run even when no one is using the app, you can set up a c
 
 #### Using Vercel Cron (if deployed on Vercel):
 
-Add to your `vercel.json`:
+**Hobby Plan**: The `vercel.json` is configured to run cleanup once daily at midnight:
+```json
+{
+  "crons": [
+    {
+      "path": "/api/cron/cleanup",
+      "schedule": "0 0 * * *"
+    }
+  ]
+}
+```
+
+**Pro Plan**: You can run cleanup more frequently (e.g., every minute):
 ```json
 {
   "crons": [
@@ -41,6 +53,8 @@ Add to your `vercel.json`:
   ]
 }
 ```
+
+Note: The client-side cleanup still runs every minute regardless of the Vercel plan!
 
 #### Manual Trigger:
 
